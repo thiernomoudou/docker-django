@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: awsdemo-nginx:latest
+    build: ./nginx
     ports:
       - "80:80"
     volumes:
@@ -14,7 +14,7 @@ services:
       - backend_net
 
   web:
-    image: awsdemo-app:latest
+    build: ./app
     command: gunicorn awsdemo.wsgi:application --reload --bind 0.0.0.0:8000
     volumes:
       - ./app/:/usr/src/app/
